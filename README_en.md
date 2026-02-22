@@ -74,6 +74,32 @@
     </tr>
   </table>
 </div></div>
+---
+### My Extension(By Yuxin Jin)
+## Overview
+
+This repo extends MiniMind with:
+- From-scratch pretraining (25M parameters)
+- RTX 4070 optimized training
+- Custom evaluation scripts
+- Inference playground
+
+## Environment
+
+- GPU: RTX 4070 (12GB)
+- PyTorch: 2.6 + CUDA 12.1
+- OS: Windows 11
+
+### Current Status
+
+- Pretraining   finished
+- SFT           in progress
+
+## Training
+
+```bash
+python train_pretrain.py --from_resume 1
+
 
 
 # 📌 Introduction
