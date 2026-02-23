@@ -60,6 +60,7 @@
 ```bash
 python train_pretrain.py --from_resume 1
 train_full_sft.py
+```
 
 ---
 
