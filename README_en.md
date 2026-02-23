@@ -32,6 +32,33 @@
 
 </div>
 
+### My Extension(By Yuxin Jin)
+## Overview
+
+This repo extends MiniMind with:
+- From-scratch pretraining (25M parameters)
+- RTX 4070 optimized training
+
+## Environment
+
+- GPU: RTX 4070 (12GB)
+- PyTorch: 2.6 + CUDA 12.1
+- OS: Windows 11
+
+### Current Status
+
+- Pretraining   finished
+- SFT           finished
+- Distillation  in progress
+
+## Training
+
+```bash
+python train_pretrain.py --from_resume 1
+python train_full_sft.py
+
+---
+
 * This open-source project aims to train a super-small language model **MiniMind** with only 3 RMB cost and 2 hours,
   starting completely from scratch.
 * The **MiniMind** series is extremely lightweight, with the smallest version being $\frac{1}{7000}$ the size of GPT-3,
@@ -75,31 +102,6 @@
   </table>
 </div></div>
 ---
-### My Extension(By Yuxin Jin)
-## Overview
-
-This repo extends MiniMind with:
-- From-scratch pretraining (25M parameters)
-- RTX 4070 optimized training
-- Custom evaluation scripts
-- Inference playground
-
-## Environment
-
-- GPU: RTX 4070 (12GB)
-- PyTorch: 2.6 + CUDA 12.1
-- OS: Windows 11
-
-### Current Status
-
-- Pretraining   finished
-- SFT           in progress
-
-## Training
-
-```bash
-python train_pretrain.py --from_resume 1
-
 
 
 # 📌 Introduction
