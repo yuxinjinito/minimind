@@ -56,6 +56,7 @@ This repo extends MiniMind with:
 ```bash
 python train_pretrain.py --from_resume 1
 python train_full_sft.py
+```
 
 ---
 
