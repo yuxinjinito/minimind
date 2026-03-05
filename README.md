@@ -38,10 +38,12 @@
 
 ## 项目简介
 
-本项目在原始 MiniMind 的基础上，实现了：
+本项目在原始 MiniMind 的基础上，完成了完整的 LLM 训练流水线复现与对比实验：
 
-- 从零开始训练 2500 万参数语言模型
-- 基于 RTX 4070 的训练与性能优化
+- 从零开始训练 2500 万参数中文语言模型（单卡 RTX 4070, 12GB）
+- 覆盖 Pretrain → SFT → LoRA → DPO → PPO 共 5 个阶段
+- 设计并行分支对比实验（LoRA / DPO / PPO 三条分支从同一 SFT 基线出发）
+- 撰写 5 份结构化阶段评估报告（见 `experiments/` 目录）
 
 ## 实验环境
 
@@ -49,17 +51,34 @@
 - 框架：PyTorch 2.6 + CUDA 12.1
 - 系统：Windows 11
 
-## 当前进度
+## 训练阶段与进度
 
-- 预训练阶段：已完成
-- 指令微调阶段(SFT): 已完成
-- 蒸馏阶段: 进行中
+| 阶段 | 版本 | 状态 |
+|------|------|------|
+| 预训练 (Pretrain) | v1 | ✅ 已完成 |
+| 监督微调 (SFT) | v2 | ✅ 已完成 |
+| LoRA 域适应 (Identity / Medical) | v3 | ✅ 已完成 |
+| 直接偏好优化 (DPO) | v4 | ✅ 已完成 |
+| 近端策略优化 (PPO) | v5 | ✅ 已完成 |
 
-## 训练方式
+### 分支结构
+
+```
+v1 (pretrain)
+  └→ v2 (full SFT)
+       ├→ v3 (LoRA identity / medical)
+       ├→ v4 (DPO)
+       └→ v5 (PPO)
+```
+
+## 训练命令
 
 ```bash
-python train_pretrain.py --from_resume 1
-train_full_sft.py
+python train_pretrain.py                            # v1 预训练
+python train_full_sft.py                            # v2 SFT
+python train_lora.py                                # v3 LoRA
+python train_dpo.py                                 # v4 DPO
+python train_ppo.py --reasoning 0                   # v5 PPO (基于 full_sft)
 ```
 
 ---

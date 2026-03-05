@@ -32,12 +32,15 @@
 
 </div>
 
-### My Extension(By Yuxin Jin)
+### My Extension (By Yuxin Jin)
 ## Overview
 
-This repo extends MiniMind with:
-- From-scratch pretraining (25M parameters)
-- RTX 4070 optimized training
+This repo extends MiniMind with a complete LLM training pipeline reproduction and controlled comparison experiments:
+
+- End-to-end training of a 25M-parameter Chinese LLM on a single RTX 4070 (12GB)
+- Full pipeline: Pretrain → SFT → LoRA → DPO → PPO across 5 stages
+- Parallel-branch evaluation: LoRA / DPO / PPO from the same SFT base
+- 5 structured stage evaluation reports (see `experiments/` directory)
 
 ## Environment
 
@@ -45,17 +48,34 @@ This repo extends MiniMind with:
 - PyTorch: 2.6 + CUDA 12.1
 - OS: Windows 11
 
-### Current Status
+### Training Stages
 
-- Pretraining   finished
-- SFT           finished
-- Distillation  in progress
+| Stage | Version | Status |
+|-------|---------|--------|
+| Pretraining | v1 | ✅ Done |
+| Supervised Fine-Tuning (SFT) | v2 | ✅ Done |
+| LoRA Domain Adaptation (Identity / Medical) | v3 | ✅ Done |
+| Direct Preference Optimization (DPO) | v4 | ✅ Done |
+| Proximal Policy Optimization (PPO) | v5 | ✅ Done |
 
-## Training
+### Branch Structure
+
+```
+v1 (pretrain)
+  └→ v2 (full SFT)
+       ├→ v3 (LoRA identity / medical)
+       ├→ v4 (DPO)
+       └→ v5 (PPO)
+```
+
+## Training Commands
 
 ```bash
-python train_pretrain.py --from_resume 1
-python train_full_sft.py
+python train_pretrain.py                            # v1 Pretrain
+python train_full_sft.py                            # v2 SFT
+python train_lora.py                                # v3 LoRA
+python train_dpo.py                                 # v4 DPO
+python train_ppo.py --reasoning 0                   # v5 PPO (from full_sft)
 ```
 
 ---
