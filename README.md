@@ -81,6 +81,15 @@ python train_dpo.py                                 # v4 DPO
 python train_ppo.py --reasoning 0                   # v5 PPO (基于 full_sft)
 ```
 
+## 项目概览思维导图
+整个项目的结构汇总在以下思维导图中：
+
+- 可编辑源文件：docs/overview.xmind
+
+- 导出的 PDF 文件：docs/overview.pdf
+
+- 导出的图片：
+![思维导图](docs/Overview.png)
 ---
 
 * 此开源项目旨在完全从0开始，仅用3块钱成本 + 2小时！即可训练出仅为25.8M的超小语言模型**MiniMind**。
