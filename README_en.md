@@ -42,6 +42,15 @@ This repo extends MiniMind with a complete LLM training pipeline reproduction an
 - Parallel-branch evaluation: LoRA / DPO / PPO from the same SFT base
 - 5 structured stage evaluation reports (see `experiments/` directory)
 
+## Project Overview Mind Map
+
+The overall project structure is summarized in the following mind map:
+
+Editable source: `docs/overview.xmind`
+- Exported pdf: `docs/overview.pdf`
+- Exported image:
+![Overview](docs/Overview.png)
+
 ## Environment
 
 - GPU: RTX 4070 (12GB)
@@ -77,14 +86,6 @@ python train_lora.py                                # v3 LoRA
 python train_dpo.py                                 # v4 DPO
 python train_ppo.py --reasoning 0                   # v5 PPO (from full_sft)
 ```
-## Project Overview Mind Map
-
-The overall project structure is summarized in the following mind map:
-
-Editable source: `docs/overview.xmind`
-- Exported pdf: `docs/overview.pdf`
-- Exported image:
-![Overview](docs/Overview.png)
 
 ---
 
